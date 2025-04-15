@@ -4,10 +4,18 @@ import startServer from './db.js'
 import TodoModel from './models/Todo.js'
 
 const app = express()
+const allowedOrigins = ['http://localhost:5173', 'https://todo-list-psi-silk.vercel.app'];
+
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://todo-list-psi-silk.vercel.app'],
-    credentials: true
-  }));
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}));
 app.use(express.json())
 
 
