@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Create from "./Create.jsx";
 import  '../App.css'
-
+import axios from "axios";
 
 const Home = () => {
   const [todos, setTodos] = useState([]);
-  console.log(setTodos);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const res = await axios.get('http://localhost:3001/get');
+        setTodos(res.data); 
+      } catch (error) {
+        console.log("Ошибка при загрузке задач:", error);
+      }
+    };
+    fetchTasks();
+  }, []);
 
   return (
     <div className="home">
@@ -17,7 +28,7 @@ const Home = () => {
       </div> 
       :
       todos.map((todo) => (
-        <div>{todo}</div>
+        <div className="task">{todo.task}</div>
       ))}
     </div>
   );

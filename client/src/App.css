@@ -16,9 +16,28 @@ padding: 10px;
 background-color: black;
 color: white;
 cursor: pointer;
+margin-bottom: 20px;
+
 }
 
 .create_form button:hover {
+  background-color: gold;
+  color: black;
+  }
+
+.task {
+  display: flex;
+  align-items: center;
+  width: 360px;
+  height: 30px;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+  padding: 2px 5px 2px 5px;
+  margin-top: 5px;
+}  
+
+.task:hover {
   background-color: gold;
   color: black;
   }

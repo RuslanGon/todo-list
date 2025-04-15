@@ -22,4 +22,14 @@ app.post('/add', async (req, res) => {
     }
 });
 
+app.get('/get', async (req, res) => {
+    try {
+        const todos = await TodoModel.find()
+        res.status(200).json(todos);
+    } catch (error) {
+        console.error('Ошибка при получении задачи:', error);
+        res.status(500).json({ message: 'Ошибка сервера. Попробуйте позже.' });
+    }
+})
+
 startServer(app)
