@@ -19,6 +19,23 @@ const Home = () => {
     fetchTasks();
   }, []);
 
+  const handleEdit = (id) => {
+    const fetchEditTasks = async () => {
+      try {
+        const { data } = await axios.put(`http://localhost:3001/update/${id}`);
+        
+        setTodos((prevTodos) =>
+          prevTodos.map((todo) =>
+            todo._id === id ? { ...todo, done: data.done } : todo 
+          )
+        );
+      } catch (error) {
+        console.log("Ошибка при редактировании задачи:", error);
+      }
+    };
+    fetchEditTasks();
+  };
+
   return (
     <div className="home">
       <h2>Todo List</h2>
@@ -30,7 +47,7 @@ const Home = () => {
       ) : (
         todos.map((todo) => 
         <div className="task">
-            <div className="checkbox">
+            <div className="checkbox" onClick={() => handleEdit(todo._id)}>
                 <BsCircleFill className='icon' />
             {todo.task}
             </div>

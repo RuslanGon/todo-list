@@ -32,4 +32,19 @@ app.get('/get', async (req, res) => {
     }
 })
 
+app.put('/update/:id', async (req, res) => {
+    try {
+        const { id } = req.params; 
+        const updatedTask = await TodoModel.findByIdAndUpdate(
+            { _id: id }, 
+            { done: true }, 
+            { new: true } 
+        );
+        res.json(updatedTask); 
+    } catch (error) {
+        console.error('Ошибка при редактировании задачи:', error);
+        res.status(500).json({ message: 'Ошибка сервера. Попробуйте позже.' });
+    }
+});
+
 startServer(app)
