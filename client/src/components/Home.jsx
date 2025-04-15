@@ -11,7 +11,7 @@ const Home = () => {
     const fetchTasks = async () => {
       try {
         const res = await axios.get('http://localhost:3001/get');
-        setTodos(res.data); 
+        setTodos(res.data);  
       } catch (error) {
         console.log("Ошибка при загрузке задач:", error);
       }
@@ -23,7 +23,6 @@ const Home = () => {
     const fetchEditTasks = async () => {
       try {
         const { data } = await axios.put(`http://localhost:3001/update/${id}`);
-        
         setTodos((prevTodos) =>
           prevTodos.map((todo) =>
             todo._id === id ? { ...todo, done: data.done } : todo 
