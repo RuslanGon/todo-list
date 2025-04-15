@@ -6,10 +6,9 @@ const Create = ({ setTodos }) => {
 
   const handleAdd = async () => {
     try {
-      const res = await axios.post("http://localhost:3001/add", { task });
-
+      const res = await axios.post("https://todo-list-sw63.onrender.com/add", { task });
+      // http://localhost:3001/add
       if (res.data && res.data.todo) {
-        // ✅ Добавляем новую задачу к текущему списку
         setTodos((prev) => [...prev, res.data.todo]);
         setTask("");
       } else {
