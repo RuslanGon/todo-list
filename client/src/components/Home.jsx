@@ -5,6 +5,7 @@ import  '../App.css'
 
 const Home = () => {
   const [todos, setTodos] = useState([]);
+  console.log(setTodos);
 
   return (
     <div className="home">

@@ -17,3 +17,8 @@ background-color: black;
 color: white;
 cursor: pointer;
 }
+
+.create_form button:hover {
+  background-color: gold;
+  color: black;
+  }
