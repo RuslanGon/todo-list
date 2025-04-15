@@ -35,6 +35,18 @@ const Home = () => {
     fetchEditTasks();
   };
 
+  const handleDelete = (id) => {
+    const fetchDelete = async () => {
+      try {
+        await axios.delete(`http://localhost:3001/delete/${id}`);
+        setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
+      } catch (error) {
+        console.log("Ошибка при удалении задачи:", error);
+      }
+    };
+    fetchDelete();
+  };
+
   return (
     <div className="home">
       <h2>Todo List</h2>
@@ -56,7 +68,7 @@ const Home = () => {
             </div>
             <div>
               <span>
-                <BsFillTrashFill className="icon" />
+                <BsFillTrashFill onClick={() => handleDelete(todo._id)} className="icon" />
               </span>
             </div>
           </div>

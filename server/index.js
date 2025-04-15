@@ -47,4 +47,15 @@ app.put('/update/:id', async (req, res) => {
     }
 });
 
+app.delete('/delete/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deletedTask = await TodoModel.findByIdAndDelete(id);
+      res.json({ message: 'Задача удалена успешно', id: deletedTask._id });
+    } catch (error) {
+      console.error('Ошибка при удалении задачи:', error);
+      res.status(500).json({ message: 'Ошибка сервера' });
+    }
+  });
+
 startServer(app)
