@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Create from "./Create.jsx";
-import  '../App.css'
+import '../App.css';
 import axios from "axios";
 import { BsCircleFill, BsFillCheckCircleFill, BsFillTrashFill } from 'react-icons/bs';
 
@@ -11,7 +11,7 @@ const Home = () => {
     const fetchTasks = async () => {
       try {
         const res = await axios.get('http://localhost:3001/get');
-        setTodos(res.data);  
+        setTodos(res.data);
       } catch (error) {
         console.log("Ошибка при загрузке задач:", error);
       }
@@ -38,17 +38,17 @@ const Home = () => {
   return (
     <div className="home">
       <h2>Todo List</h2>
-      <Create />
-      {todos.length === 0 ? (
+      <Create setTodos={setTodos} />
+      {Array.isArray(todos) && todos.length === 0 ? (
         <div>
           <h2>No Record</h2>
         </div>
       ) : (
         todos.map((todo) => (
-          <div className="task">
+          <div className="task" key={todo._id}>
             <div className="checkbox" onClick={() => handleEdit(todo._id)}>
               {todo.done ? (
-                <BsFillCheckCircleFill className="icon"> </BsFillCheckCircleFill>
+                <BsFillCheckCircleFill className="icon" />
               ) : (
                 <BsCircleFill className="icon" />
               )}
