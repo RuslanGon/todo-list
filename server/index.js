@@ -4,8 +4,8 @@ import startServer from './db.js'
 import TodoModel from './models/Todo.js'
 
 const app = express()
-app.options('*', cors({ origin: ['http://localhost:5173', 'https://todo-list-nine-ebon-85.vercel.app'], credentials: true }));
-app.use(cors({origin: ['http://localhost:5173', 'https://todo-list-nine-ebon-85.vercel.app'], credentials: true}))
+// app.options('*', cors({ origin: ['http://localhost:5173'], credentials: true }));
+app.use(cors({origin: ['http://localhost:5173'], credentials: true}))
 app.use(express.json())
 
 

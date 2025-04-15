@@ -6,7 +6,7 @@ const Create = ({ setTodos }) => {
 
   const handleAdd = async () => {
     try {
-      const res = await axios.post("https://todo-list-sw63.onrender.com/add", { task });
+      const res = await axios.post("http://localhost:3001/add", { task });
       // http://localhost:3001/add
       if (res.data && res.data.todo) {
         setTodos((prev) => [...prev, res.data.todo]);

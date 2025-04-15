@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const res = await axios.get('https://todo-list-sw63.onrender.com/get');
+        const res = await axios.get('http://localhost:3001/get');
         // http://localhost:3001/get
         setTodos(res.data);
       } catch (error) {
@@ -23,7 +23,7 @@ const Home = () => {
   const handleEdit = (id) => {
     const fetchEditTasks = async () => {
       try {
-        const { data } = await axios.put(`https://todo-list-sw63.onrender.com/update/${id}`);
+        const { data } = await axios.put(`http://localhost:3001/update/${id}`);
         // http://localhost:3001/update/${id}
         setTodos((prevTodos) =>
           prevTodos.map((todo) =>
@@ -40,7 +40,7 @@ const Home = () => {
   const handleDelete = (id) => {
     const fetchDelete = async () => {
       try {
-        await axios.delete(`https://todo-list-sw63.onrender.com/delete/${id}`);
+        await axios.delete(`http://localhost:3001/delete/${id}`);
         // http://localhost:3001/delete/${id}
         setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
       } catch (error) {
